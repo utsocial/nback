@@ -1,0 +1,67 @@
+.container button {
+  background: rgb(0, 100, 255);
+  border: 1px solid rgb(30, 30, 30);
+  border-radius: 3px;
+  color: #fff;
+  cursor: pointer;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  transition: 0.5s;
+  width: 100%;
+}
+
+.container {
+  position: relative;
+}
+
+.container button:hover {
+  background: #fff;
+  color: rgb(0, 100, 255);
+}
+
+.container button[disabled]:hover,
+.container button[disabled] {
+  background: #999;
+  border-color: rgba(0, 0, 0, 0.07);
+  color: #fff;
+  cursor: default;
+}
+
+.spinner {
+  -webkit-animation: sk-pulseScaleOut 1s infinite ease-in-out;
+  animation: sk-pulseScaleOut 1s infinite ease-in-out;
+  background-color: #333;
+  border-radius: 50%;
+  display: block;
+  height: 25px;
+  position: absolute;
+  right: 6px;
+  top: calc(50% - 12px);
+  width: 25px;
+}
+
+@-webkit-keyframes sk-pulseScaleOut {
+  0% {
+    -webkit-transform: scale(0);
+    transform: scale(0);
+  }
+
+  100% {
+    opacity: 0;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+}
+
+@keyframes sk-pulseScaleOut {
+  0% {
+    -webkit-transform: scale(0);
+    transform: scale(0);
+  }
+
+  100% {
+    opacity: 0;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+}

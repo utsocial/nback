@@ -1,0 +1,19 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: #eee;
+  font-family: 'sans-serif';
+}
+
+.container {
+  border: 1px solid gray;
+  margin: 100px auto 0;
+  width: 380px;
+}
+
+a {
+  cursor: pointer;
+  text-decoration: none;
+}

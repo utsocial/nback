@@ -1,0 +1,10 @@
+{
+  "ignore": [
+    "android/**/*",
+    "ios/**/*",
+    "native/**/*",
+    "shared/**/*",
+    "test/**/*",
+    "web/**/*"
+  ]
+}

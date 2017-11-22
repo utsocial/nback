@@ -1,0 +1,53 @@
+language: node_js
+node_js:
+- node
+sudo: true
+dist: trusty
+env:
+  global:
+  # GITHUB_TOKEN (deploy to github pages)
+  - secure: SGmI2gSHYSL7iM9KIWYsOdZ3iS0KpVxXsJsTaobEvvY6n0tpDM6BVlatrDSggQjX/YT4V6vz14Fv3SXLaL/eZGQ3K0gOK7NMv7kkg4pEkLwVMjUe4DvSyLOp2GDDfQR3SKXy/+5iRHIX+gLf2QJMlK2T92cyftt3DgnBiZPke7LUa9roMP1jPaWacRwgu3TNEmd7wQ7sdf8QZNWhQDxIUQNjnQDrdXyta6ist4smzK3BNCdJh8NpsxK9gdi2Y3tvRlvfYAE70kkadIPwc/pZpZPxMaX2U3Ac4z7Dgjbv3gCGNt9kKZ4iBnRAzZ+gaQAkYV1v7AURT2Ccm2sPGD0yQX5ZUAqI+wWrjZdK52j6rI01A+0WsYxZYO5k+dGVUkBbPXJE93WFmaA1YDZ6G0ijojanMINwYKiPVfipZPe/aeD1/uxUFLRjx4n3aEe3GmJRkcbU6maX5dk7hVD+XLLQ7dUuBOdcrOuJNYtDXmbUeLFzHZLMOVc8fzyhrbKgVujgSTXn7X+Xn51fANUBKlbbTSJ7xWday7w/Ni3tuPm92HZTT3/Nnuc4uIiLHVIRJjZQ/9MYltDRn4uzcPBXzyYM+daMiD3b3Sza9PbDfdnyGr2bg6xNR0GOeV5YoSjOa+Kkc2EszNs5s6t9CjVki+h/G4ljAq5sep8fFhRusPJ/15w=
+  # SURGE_LOGIN
+  - secure: akXDx89+ClwBWSzvUPynMzn+TlUhn9hrxe0ryxnTN00HcENoT3STf6loKXmBs1qzLIKBKqBQ63mQoLMSkQqSY+qLLo9sC47wOh4wlBQwl/9vTyrZYEvYnZQchzaNTX2hrjUn3ssW9miDc4/+3mRSIyCw2KjooCnlv7qjgF+a5S7GzAgQZIsXyK4n91EuiBfK/cJsOKemm+QR/OsFnp6LXNJBP3UE2ps9ZHirYK/W/t579WMpyJ2yHB1qwR9X+OVeAIsRQkrsTL9BHdua1qK6Lq1zSGrPpT9JixFzgHeKDXPs9m1/tOVV/p8usv6If2ewcak6JDpZ+3nLHgDNOBbKAsQEedHOA3YfnTQtrMWZdGZR3dF65RiyA4mO9s9e4qqm+M14786kEOsBZ+dEiJqYPQIqhlDFpGBW4XMdHjMO/opjIyb3MkcWYpDk3UxB+ASQmyDHGl4ah/dd1OGX6S9N4yzFbC7XmY1UGVjS2hVK1AufRS9Lg72TTPZShdkNfJt8MEgh1ysZCkJ6jI6tmQ0mSWHu1wwYjbDpJwWBW+DttKdAfivkQNbFbNSvuJ2dR2LqW/QWhjMxV50q/Fm783rhKJW8vjP7AzjJf+fBXleViEunBH7zcEvRMrIcUMLawDGxqpQPNY+2aHfqMSXDqN68S2pKp1fdzeUibOgq6WoP6Yw=
+  # SURGE_TOKEN
+  - secure: iwK3/U+/obKLyu+8JJe0Kce/bAYE8HbwSN7pU46lc4o2tuPCbfnX3VP6di3NA1lq72Xw/rTZ9olk8ZLfFVAupVo1LwZu9oIJ7RPoZwCIRDshZNLcKpwpXkFY3dCK/sTY5OWDSp7VK9bvAIAS2xZ8qkZY1xj5Ex9kphTV4YG3j6Ll6fch1VbM/MIA5nt70hD90LQli5zyn6LCCcYQbBDEzYikIx0lqnbI8z49XxdqAC3n9fNZ/y8+F8REp81QF/h3L9RKOkYruIjdwJFaJtMMpBUyKIAu3dX5Ia3skaza7IXyee1KndYftJZ/KiAKuzHAQgW6r7o/RAhw9G3s3fgNZAe5/Nep4acqb3ygONQzqN0FGkwHYE35QYzGBoZ7Pg5seLtJI6VSifZavEcAdDjA9BQfIzH+buoDNLpgYMmIa5DpfOZhzHymna/NB2lSJvZb+lc8XImA5dyyt/GtAHMEtLG9z4YbsVHW3rvkpr11BUGgX52UvVztQAUrr+Rs+rt3O56jkPyg8w8LaZLB3IJ8nfRmLBeS37AwYWReq9ZrfyhwxTkEieuDvDZf/N694IYe/FIW7XADppn+75o4/R3UX4CsRgbxNxzIHAgokr84I5JR16qP5LxZc3XzKqW2We+Rq4JVKrh1TNpcsHpwowVSzCr1Tl5XnbSthhAaNK/vPHg=
+
+  matrix:
+    - SCRIPT=lint
+    - SCRIPT=test
+    - E2Eweb=true
+branches:
+  only:
+  - master
+  - "/v\\d\\./"
+  - "/^greenkeeper-.*$/"
+before_install:
+- export CHROME_BIN=/usr/bin/google-chrome
+- export DISPLAY=:99.0
+- sh -e /etc/init.d/xvfb start
+- sudo apt-get update
+- sudo apt-get install -y libappindicator1 fonts-liberation
+- wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+- sudo dpkg -i google-chrome*.deb
+cache:
+  directories:
+  - node_modules
+script:
+- if [ "$SCRIPT" ]; then npm run $SCRIPT; fi
+- if [ "$E2Eweb" ]; then ./scripts/e2e-web-travis.sh; fi
+
+after_success:
+- "./scripts/deployToSurgeCi.sh"
+
+deploy:
+  - provider: heroku
+    app: memory-n-back-staging
+    api_key:
+      secure: OwqgiIYmgg88izpJsXqKfoQy8EcM+bCvQmuXMJPZUQGzM0fBOOoE/XbkdAj+sL5Fp95ffQ30H6pNktkgtFpEalrx5EzT/wih5hIRiflUanOMhpC1BYByk2a/riUtNGniBQbeL+u/bAqsuUcwrVEaky+94KbDcBD9JWBvkpytzY1cxw5E4/UJWki59r0MbZFbRoL6zpW5ZC4hV9yyrPqQsCoDExZNxG6lfM5MHvh2eGiJWlbBMK5JxE9F3zHw1uKltkeCu0BXz4gjEw1l8cPXrVJLvVqkw7Y7OznQByYLMzr4czlBQ/572pKNr29PSaAGK+OyR2GKCkpLynh6AOApni3GR/1T9RZ1lIaN4ySfBsNBSuPr9wogv1yEG/2Z1Zrf0BFrfwJoXyA+aYkIzFBXaz5hQMPxKQ+FX4tsG2n6CuGJ+Bu93KHEaz4thBPDJPIDn+0YfigcYEb4t252yZdh+6452dZABmMg6nNPhzpgoeXckuVMODHag74PaxkEA3ZAC0tRECqtTED5WDGM9utNnAwFkq8VHiMyoR4kpiyDf2ZKEeVvWSPbLvPCd8YQeycrswFATHrFf+LrlecbD2SeFdt7E1m1YaG2NXAzuboqkjzREpDy7tfebMVuWQPqvNrmPkdyjaM5Q2O1EeT+teMLkBXsY/EgzlO5/UpDRYx+dEU=
+  - provider: heroku
+    app: memory-n-back
+    api_key:
+      secure: OwqgiIYmgg88izpJsXqKfoQy8EcM+bCvQmuXMJPZUQGzM0fBOOoE/XbkdAj+sL5Fp95ffQ30H6pNktkgtFpEalrx5EzT/wih5hIRiflUanOMhpC1BYByk2a/riUtNGniBQbeL+u/bAqsuUcwrVEaky+94KbDcBD9JWBvkpytzY1cxw5E4/UJWki59r0MbZFbRoL6zpW5ZC4hV9yyrPqQsCoDExZNxG6lfM5MHvh2eGiJWlbBMK5JxE9F3zHw1uKltkeCu0BXz4gjEw1l8cPXrVJLvVqkw7Y7OznQByYLMzr4czlBQ/572pKNr29PSaAGK+OyR2GKCkpLynh6AOApni3GR/1T9RZ1lIaN4ySfBsNBSuPr9wogv1yEG/2Z1Zrf0BFrfwJoXyA+aYkIzFBXaz5hQMPxKQ+FX4tsG2n6CuGJ+Bu93KHEaz4thBPDJPIDn+0YfigcYEb4t252yZdh+6452dZABmMg6nNPhzpgoeXckuVMODHag74PaxkEA3ZAC0tRECqtTED5WDGM9utNnAwFkq8VHiMyoR4kpiyDf2ZKEeVvWSPbLvPCd8YQeycrswFATHrFf+LrlecbD2SeFdt7E1m1YaG2NXAzuboqkjzREpDy7tfebMVuWQPqvNrmPkdyjaM5Q2O1EeT+teMLkBXsY/EgzlO5/UpDRYx+dEU=
+    on:
+      tags: true
+      all_branches: true

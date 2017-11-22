@@ -1,0 +1,27 @@
+engines:
+  markdownlint:
+    enabled: true
+  shellcheck:
+    enabled: true
+  fixme:
+    enabled: true
+    config:
+      string:
+        - FIXME
+        - TODO
+        - todo
+        - Todo
+  eslint:
+    enabled: true
+  csslint:
+    enabled: true
+  duplication:
+    enabled: false
+ratings:
+  paths:
+  - native/**
+  - shared/**
+  - web/**
+exclude_paths:
+- "**.spec.**"
+- "**.nspec.**"
